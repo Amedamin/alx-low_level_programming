@@ -1,19 +1,25 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - Prints the alphabet.
- *
- * Return: Always 0 (Success)
+ * print_alphabet_x10 - prints 10 times the alphabet, in lowercase,
+ * followed by a new line
  */
-int main(void)
+void print_alphabet_x10(void)
 {
-	char alp[26] = "abcdefghijklmnopqrstuvwxyz";
+	char ch;
 	int i;
 
-	for (i = 0; i < 26; i++)
+	i = 0;
+
+	while (i < 10)
 	{
-		putchar(alp[i]);
+		ch = 'a';
+		while (ch <= 'z')
+		{
+			_putchar(ch);
+			ch++;
+		}
+		_putchar('\n');
+		i++;
 	}
-	putchar('\n');
-	return (0);
 }

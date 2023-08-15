@@ -1,23 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "main.h"
 
 /**
- * main - Prints the alphabet without q and e.
- *
- * Return: Always 0 (Success)
+ * _isalpha - checks for alphabetic character
+ * @c: the character to be checked
+ * Return: 1 if c is a letter, 0 otherwise
  */
-int main(void)
+int _isalpha(int c)
 {
-	int i;
-
-	for (i = 97; i < 123; i++)
-	{
-		if (i != 101 && i != 113)
-		{
-			putchar(i);
-		}
-	}
-	putchar('\n');
-	return (0);
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }

@@ -1,18 +1,15 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - Prints numbers from 0 to 9.
- *
- * Return: Always 0 (Success)
+ * _abs - computes the absolute value of an integer
+ * @n: the int to check
+ * Return: the absolute value of int
  */
-int main(void)
+int _abs(int n)
 {
-	int i;
-
-	for (i = 48; i < 58; i++)
+	if (n >= 0)
 	{
-		putchar(i);
+		return (n);
 	}
-	putchar('\n');
-	return (0);
+	return (-n);
 }
