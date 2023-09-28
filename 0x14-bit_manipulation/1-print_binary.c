@@ -5,15 +5,9 @@
  * @n: number to print in binary
  */
 
-void print_binary(unsigned long int n)
-{int i;
-
-	for (i = 31; i >= 0; i--)
-	{
-		int x = (1 << i);
-
-		if (n & x)
-			printf("1");
-		else
-			printf("0");
+void print_binary(unsigned long int n) {
+	if (n > 1) {
+		print_binary(n >> 1);
 	}
+	putchar((n & 1) ? '1' : '0');
+}
