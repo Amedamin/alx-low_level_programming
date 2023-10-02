@@ -1,14 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
 #include <unistd.h>
+#include <fcntl.h>
 
-#define BUFFER_SIZE 1024
-
-void exit_with_error(const char *message, int exit_code) {
-	dprintf(STDERR_FILENO, "%s\n", message);
-	exit(exit_code);
+#define SIZE 1024
+/**
+ * ex_error - It prints the error statement and executes exit.
+ * @Mes: The error message to display.
+ * @e_exit: The exit code to use when exiting the program.
+ */
+void ex_error(const char *Mes, int e_exit)
+{
+	dprintf(STDERR_FILENO, "Error: %s\n", Mes);
+	exit(e_exit);
 }
+
+/**
+ * main - Copy the content of one file to another.
+ *
+ * @argc: The number of command-line arguments.
+ * @argv: An array of command-line argument strings.
+ *
+ * Return: 0 on success, or an error code (97, 98, 99, or 100) on failure.
+ *
+ * Description:3-cp.c
+ * This program takes two command-line arguments: the source file (file_from)
+ * and the destination file (file_to). It copies the content of the source
+ * file to the destination file while handling various error conditions.
+ *
+ * Error Codes:
+ *  - 97: Incorrect usage. Should be "cp file_from file_to".
+ *  - 98: Failed to read from the source file.
+ *  - 99: Failed to write to the destination file.
+ *  - 100: Failed to close a file descriptor.
+ */
 
 int main(int argc, char *argv[]) {
 	// Check the number of arguments
