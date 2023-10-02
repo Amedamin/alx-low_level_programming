@@ -1,7 +1,9 @@
 #include <stdio.h>
+#define  per (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 
 #define SIZE 1024
 /**
