@@ -35,57 +35,45 @@ void ex_error(const char *Mes, int e_exit)
  *  - 100: Failed to close a file descriptor.
  */
 
-int main(int argc, char *argv[]) {
-	// Check the number of arguments
-	if (argc != 3) {
-		exit_with_error("Usage: cp file_from file_to", 97);
+int main(int argc, char *argv[])
+{const char *file_from;
+	const char *file_to;
+	int ptr_from, ptr_to;
+	char buf[SIZE];
+	ssize_t r, w;
+
+	if (argc != 3)
+		ex_error("Usage: cp file_from file_to", 97);
+	file_from = argv[1];
+	file_to = argv[2];
+	ptr_from = open(file_from, O_RDONLY);
+
+	if (ptr_from == -1)
+		ex_error("Can't read from file", 98);
+	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+
+	if (ptr_to == -1)
+	{
+		close(ptr_from);
+		ex_error("Can't write to file", 99); }
+	while ((r = read(ptr_from, buf, SIZE)) > 0)
+	{
+		w = write(ptr_to, buf, r);
+		if (w != r || w == -1)
+		{
+			close(ptr_from);
+			close(ptr_to);
+			ex_error("Can't write to file", 99);
+		}}
+
+	if (r == -1)
+	{
+		close(ptr_from);
+		close(ptr_to);
+		ex_error("Can't read from file", 98);
 	}
 
-	char *file_from = argv[1];
-	char *file_to = argv[2];
-
-	// Open the source file
-	int fd_from = open(file_from, O_RDONLY);
-	if (fd_from == -1) {
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
-
-	// Open the destination file with truncation
-	int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd_to == -1) {
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		exit(99);
-	}
-
-	// Copy the content from source to destination
-	char buffer[BUFFER_SIZE];
-	ssize_t read_count, write_count;
-
-	while ((read_count = read(fd_from, buffer, BUFFER_SIZE)) > 0) {
-		write_count = write(fd_to, buffer, read_count);
-		if (write_count == -1) {
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			exit(99);
-		}
-	}
-
-	// Handle read error
-	if (read_count == -1) {
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
-
-	// Close file descriptors
-	if (close(fd_from) == -1) {
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-		exit(100);
-	}
-
-	if (close(fd_to) == -1) {
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-		exit(100);
-	}
-
-	return 0;
+	if (close(ptr_from) == -1 || close(ptr_to) == -1)
+		ex_error("Can't close ptr", 100);
+	return (0);
 }
