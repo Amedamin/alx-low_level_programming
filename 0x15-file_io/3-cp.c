@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 	if (ptr_from == -1)
 		ex_error("Can't read from file", 98);
-	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, per);
 
 	if (ptr_to == -1)
 	{
