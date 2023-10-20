@@ -5,4 +5,7 @@
  * Return: 0 for big, 1 for little
  */
 int get_endianness(void)
-
+{
+	unsigned long int l = 1; 
+	return (*(char *)&l);
+}
