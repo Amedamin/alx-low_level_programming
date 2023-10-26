@@ -15,11 +15,11 @@ unsigned int binary_to_uint(const char *b)
 	int i, num, rem, base = 1, x, n;
 	int int_num = 0;
 
-	x = strlen(b);
-	num = atoi(b);
-
 	if (!b)
 		return (0);
+
+	x = strlen(b);
+	num = atoi(b);
 
 	for (n = 0; b[n]; n++)
 	{
