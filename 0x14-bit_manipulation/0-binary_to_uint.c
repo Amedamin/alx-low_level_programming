@@ -23,14 +23,6 @@ unsigned int binary_to_uint(const char *b)
 
 		if (b[n] < '0' || b[n] > '1')
 			return (0);
-	}
-
-	for (i = x - 1; i >= 0; i--)
-	{
-		rem = num % 10;
-		int_num = int_num + rem * base;
-		num = num / 10;
-		base = base * 2;
-	}
-	return (int_num);
+		int_num = int_num * 2 + (b[n]-'0');
+		return (int_num);
 }
