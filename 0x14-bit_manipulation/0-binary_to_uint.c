@@ -9,11 +9,11 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-	int i, num, rem, base = 1, x, n;
-	int int_num = 0;
+	int i, num, n;
+	i, num = 1;
+	int int_num;
+	int_num = 0;;
 
-	x = strlen(b);
-	num = atoi(b);
 
 	if (!b)
 		return (0);
@@ -25,4 +25,4 @@ unsigned int binary_to_uint(const char *b)
 			return (0);
 		int_num = int_num * 2 + (b[n]-'0');
 		return (int_num);
-}
+	}
