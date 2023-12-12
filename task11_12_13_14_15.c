@@ -43,82 +43,82 @@ void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_nun)
 	while (runner != NULL)
 	{
 		val = runner->n;
-		if (val == 0) 
-			break; 
-		if (!isprint(val)) 
-		{ 
-			break; 
-		} 
-		putchar(val); 
-		runner = runner->next; 
-	} 
+		if (val == 0)
+			break;
+		if (!isprint(val))
+		{
+			break;
+		}
+		putchar(val);
+		runner = runner->next;
+	}
 	putchar('\n');
 }
 
-/** 
- * _rotl - rotates the list left 
- * @stack: pointer to the top of the stack 
- * @line_number: the index of the current line 
- * 
- */ 
-void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number) 
-{ 
-	stack_t *runner; 
-	int temp1, temp2; 
+/**
+ * handle_rotl - rotates the list left
+ * @buff: pointer to the top of the stack
+ * @l_num: the index of the current line
+ *
+ */
+void handle_rotl(stack_t **buff, __attribute__ ((unused))unsigned int l_num) 
+{
+	stack_t *runner;
+	int temp1, temp2;
 
-	if (*stack == NULL) 
-		return; 
-	runner = *stack; 
-	while (runner->next) 
-		runner = runner->next; 
-	while (runner) 
-	{ 
-		if (!runner->next) 
-		{ 
-			temp1 = runner->n; 
-			runner->n = (*stack)->n; 
-		} 
-		else 
-		{ 
-			temp2 = runner->n; 
-			runner->n = temp1; 
-			temp1 = temp2; 
-		} 
-		runner = runner->prev; 
-	} 
-} 
-/** 
- * _rotr - rotates the list right 
- * @stack: pointer to the top of the stack 
- * @line_number: the index of the current line 
- * 
- */ 
-void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number) 
-{ 
-	stack_t *runner1, *runner2; 
-	int temp1, temp2; 
+	if (*buff == NULL)
+		return;
+	runner = *buff;
+	while (runner->next)
+		runner = runner->next;
+	while (runner)
+	{
+		if (!runner->next)
+		{
+			temp1 = runner->n;
+			runner->n = (*buff)->n;
+		}
+		else
+		{
+			temp2 = runner->n;
+			runner->n = temp1;
+			temp1 = temp2;
+		}
+		runner = runner->prev;
+	}
+}
+/**
+ * handle_rotr - rotates the list right
+ * @buff: pointer to the top of the stack
+ * @l_num: the index of the current line
+ *
+ */
+void handle_rotr(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
+{
+	stack_t *runner1, *runner2;
+	int temp1, temp2;
 
-	if (*stack == NULL) 
-		return; 
+	if (*buff == NULL)
+		return;
 
-	runner1 = *stack; 
-	runner2 = *stack; 
-	while (runner1->next) 
-		runner1 = runner1->next; 
-	while (runner2) 
-	{ 
-		if (runner2->prev == NULL) 
-		{ 
-			temp1 = runner2->n; 
-			runner2->n = runner1->n; 
-		} 
-		else 
-		{ 
-			temp2 = runner2->n; 
-			runner2->n = temp1; 
-			temp1 = temp2; 
-		} 
-		runner2 = runner2->next; 
+	runner1 = *puff;
+	runner2 = *puff;
+	while (runner1->next)
+		runner1 = runner1->next;
+	while (runner2)
+	{
+		if (runner2->prev == NULL)
+		{
+			temp1 = runner2->n;
+			runner2->n = runner1->n;
+		}
+		else
+		{
+			temp2 = runner2->n;
+			runner2->n = temp1;
+			temp1 = temp2;
+		}
+		runner2 = runner2->next;
 
-	} 
+	}
 }
