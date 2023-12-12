@@ -116,7 +116,7 @@ void handle_rotr(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
 		{
 			num2 = step2->n;
 			step2->n = num1;
-			nump1 = num2;
+			num1 = num2;
 		}
 		step2 = step2->next;
 
