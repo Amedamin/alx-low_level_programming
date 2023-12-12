@@ -63,28 +63,28 @@ void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_nun)
  */
 void handle_rotl(stack_t **buff, __attribute__ ((unused))unsigned int l_num) 
 {
-	stack_t *runner;
-	int temp1, temp2;
+	stack_t *step;
+	int num1, num2;
 
 	if (*buff == NULL)
 		return;
-	runner = *buff;
-	while (runner->next)
-		runner = runner->next;
-	while (runner)
+	step = *buff;
+	while (step->next)
+		step= step->next;
+	while (step)
 	{
-		if (!runner->next)
+		if (!step->next)
 		{
-			temp1 = runner->n;
-			runner->n = (*buff)->n;
+			num1 = step->n;
+			step->n = (*buff)->n;
 		}
 		else
 		{
-			temp2 = runner->n;
-			runner->n = temp1;
-			temp1 = temp2;
+			num2 = step->n;
+			step->n = num1;
+			num1 = num2;
 		}
-		runner = runner->prev;
+		step = step->prev;
 	}
 }
 /**
@@ -95,30 +95,30 @@ void handle_rotl(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
  */
 void handle_rotr(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
 {
-	stack_t *runner1, *runner2;
-	int temp1, temp2;
+	stack_t *step1, *step2;
+	int num1, num2;
 
 	if (*buff == NULL)
 		return;
 
-	runner1 = *puff;
-	runner2 = *puff;
-	while (runner1->next)
-		runner1 = runner1->next;
-	while (runner2)
+	step1 = *puff;
+	step2 = *puff;
+	while (step1->next)
+		step1 = step1->next;
+	while (step2)
 	{
-		if (runner2->prev == NULL)
+		if (step2->prev == NULL)
 		{
-			temp1 = runner2->n;
-			runner2->n = runner1->n;
+			num1 = step2->n;
+			step2->n = step1->n;
 		}
 		else
 		{
-			temp2 = runner2->n;
-			runner2->n = temp1;
-			temp1 = temp2;
+			num2 = step2->n;
+			step2->n = num1;
+			nump1 = num2;
 		}
-		runner2 = runner2->next;
+		step2 = step2->next;
 
 	}
 }
