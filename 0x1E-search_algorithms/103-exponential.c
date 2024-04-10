@@ -9,8 +9,7 @@
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t i, M, B, L, H;
-
+	size_t i , M, B, L, H;
 	if (!array || size == 0)
 		return (-1);
 
@@ -21,7 +20,7 @@ int exponential_search(int *array, size_t size, int value)
 	}
 
 	B = 1;
-	while (array[B] <= value && B < size)
+	while (B < size && array[B] <= value)
 	{
 		printf("Value checked array[%lu] = [%d]\n", B, array[B]);
 		B *= 2;
