@@ -1,12 +1,12 @@
 #include "search_algos.h"
 
 /**
- * print_array - Prints an array of integers
+ * P_array - Prints an array of integers
  * @array: The array to print
  * @S: The starting index to print from
  * @E: The ending index to print to
  */
-void print_array(int *array, size_t S, size_t E)
+void P_array(int *array, size_t S, size_t E)
 {
 	size_t i = S;
 
@@ -36,7 +36,7 @@ int advanced_binary_R(int *array, size_t S, size_t E, int value)
 	if (S > E)
 		return (-1);
 
-	print_array(array, S, E);
+	P_array(array, S, E);
 
 	if (array[M] == value)
 	{
