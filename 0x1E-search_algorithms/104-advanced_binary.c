@@ -3,18 +3,20 @@
 /**
  * print_array - Prints an array of integers
  * @array: The array to print
- * @start: The starting index to print from
- * @end: The ending index to print to
+ * @S: The starting index to print from
+ * @E: The ending index to print to
  */
-void print_array(int *array, size_t start, size_t end)
+void print_array(int *array, size_t S, size_t E)
 {
-	size_t i;
+	size_t i = S;
+
 	printf("Searching in array: ");
-	for (i = start; i <= end; ++i)
+	while (i <= E)
 	{
 		printf("%d", array[i]);
-		if (i < end)
+		if (i < E)
 			printf(", ");
+		++i;
 	}
 	printf("\n");
 }
@@ -22,34 +24,34 @@ void print_array(int *array, size_t start, size_t end)
 /**
  * advanced_binary_R - Searches for a value in a sorted array of integers
  * @array: A pointer to the first element of the array to search in.
- * @start: The starting index of the subarray to search in.
- * @end: The ending index of the subarray to search in.
+ * @S: The starting index of the subarray to search in.
+ * @E: The ending index of the subarray to search in.
  * @value: The value to search for.
  * Return: The index where value is located or -1 if not found.
  */
-int advanced_binary_R(int *array, size_t start, size_t end, int value)
+int advanced_binary_R(int *array, size_t S, size_t E, int value)
 {
-	size_t mid = start + (end - start) / 2;
+	size_t M = S + (E - S) / 2;
 
-	if (start > end)
-		return -1;
+	if (S > E)
+		return (-1);
 
-	print_array(array, start, end);
+	print_array(array, S, E);
 
-	if (array[mid] == value)
+	if (array[M] == value)
 	{
-		if (mid == 0 || (array[mid - 1] != value))
-			return mid;
+		if (M == 0 || (array[M - 1] != value))
+			return (M);
 		else
-			return advanced_binary_R(array, start, mid, value);
+			return (advanced_binary_R(array, S, M, value));
 	}
-	else if (array[mid] < value)
+	else if (array[M] < value)
 	{
-		return advanced_binary_R(array, mid + 1, end, value);
+		return (advanced_binary_R(array, M + 1, E, value));
 	}
 	else
 	{
-		return advanced_binary_R(array, start, mid, value);
+		return (advanced_binary_R(array, S, M, value));
 	}
 }
 
@@ -63,7 +65,7 @@ int advanced_binary_R(int *array, size_t start, size_t end, int value)
 int advanced_binary(int *array, size_t size, int value)
 {
 	if (!array || size == 0)
-		return -1;
+		return (-1);
 
-	return advanced_binary_R(array, 0, size - 1, value);
+	return (advanced_binary_R(array, 0, size - 1, value));
 }
