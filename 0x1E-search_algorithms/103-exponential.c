@@ -9,26 +9,24 @@
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t i , M, B, L, H;
+	size_t i, M, B, L, H;
+
 	if (!array || size == 0)
 		return (-1);
 
 	if (array[0] == value)
 	{
 		printf("Value checked array[0] = [%d]\n", array[0]);
-		return (0);
-	}
+		return (0); }
 
 	B = 1;
-	while (B < size && array[B] <= value)
+	while (size > B && array[B] <= value)
 	{
 		printf("Value checked array[%lu] = [%d]\n", B, array[B]);
-		B *= 2;
-	}
+		B *= 2; }
 
 	L = B / 2;
-	H = (B < size) ? B : size - 1;
-
+	H = (size > B) ? B : size - 1;
 	printf("Value found between indexes [%lu] and [%lu]\n", L, H);
 
 	while (L <= H)
@@ -39,8 +37,7 @@ int exponential_search(int *array, size_t size, int value)
 		{
 			printf("%d", array[i]);
 			if (i < H)
-				printf(", ");
-		}
+				printf(", "); }
 		printf("\n");
 
 		if (array[M] == value)
@@ -51,6 +48,4 @@ int exponential_search(int *array, size_t size, int value)
 		else
 			H = M - 1;
 	}
-
-	return (-1);
-}
+	return (-1); }
